@@ -2,7 +2,7 @@ import { firebaseConfig } from './config.js'
 firebase.initializeApp(firebaseConfig);
 let db = firebase.firestore();
 
-let arrUsrs = []
+//let arrUsrs = []
 let contador = 0
 
 if (JSON.parse(localStorage.getItem("usuarios"))) {
@@ -28,11 +28,12 @@ document.getElementById("form").addEventListener("submit", (event) => {
         keyComentario: comentario
     }
 
-    // arrUsrs.push(obj)
-    // localStorage.setItem(`usuarios`, JSON.stringify(arrUsrs))
+
+    //arrUsrs.push(obj)
+    //localStorage.setItem(`usuarios`, JSON.stringify(arrUsrs))
     contador++
-    
-    crearUsuario(obj);
+    crearUsuario(obj)
+
 
     pintarDatos(obj)
     borrarUsr(obj.id)
@@ -80,14 +81,16 @@ document.getElementById("erase").addEventListener("click", () => {
 })
 
 
-// FIREBASE
+////FireBase
 
 function crearUsuario(dataUser){
     db.collection("users").add(dataUser)
-    .then((docRef) => {
-        console.log("Document written with ID: ", docRef.id);
-    })
-    .catch((error) => {
-        console.error("Error adding document: ", error);
-    });
-}
+            .then((docRef) => {
+                console.log("Document written with ID: ", docRef.id);
+        })
+            .catch((error) => {
+                console.error("Error adding document: ", error);
+        });
+  }
+  
+
