@@ -1,3 +1,7 @@
+import { firebaseConfig } from './config.js'
+firebase.initializeApp(firebaseConfig);
+let db = firebase.firestore();
+
 let arrUsrs = []
 let contador = 0
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clase 5</title>
+    <title>LocalStorage to Firebase</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -25,7 +25,13 @@
     <button id="erase">BORRAR TODOS</button>
     <div id="datos"></div>
 
-    <script src="script.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-app.js"></script>
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.2/firebase-firestore.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 
 </html>
