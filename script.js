@@ -6,13 +6,18 @@ let db = firebase.firestore();
 let contador = 0
 
 if (JSON.parse(localStorage.getItem("usuarios"))) {
-    arrUsrs = JSON.parse(localStorage.getItem("usuarios"))
+    // arrUsrs = JSON.parse(localStorage.getItem("usuarios"))
+    readAll()
+    console.log();
     contador = arrUsrs[arrUsrs.length - 1].id + 1
     arrUsrs.map(usr => {
         pintarDatos(usr)
         borrarUsr(usr.id)
+        
     })
 }
+console.log(readAll());
+
 
 document.getElementById("form").addEventListener("submit", (event) => {
     event.preventDefault();
@@ -22,7 +27,7 @@ document.getElementById("form").addEventListener("submit", (event) => {
     var comentario = document.getElementById('comentario').value;
 
     const obj = {
-        id: contador,
+        // id: contador,
         keyNombre: nombre,
         keyEmail: email,
         keyComentario: comentario
@@ -33,6 +38,7 @@ document.getElementById("form").addEventListener("submit", (event) => {
     //localStorage.setItem(`usuarios`, JSON.stringify(arrUsrs))
     contador++
     crearUsuario(obj)
+    
 
 
     pintarDatos(obj)
@@ -40,17 +46,17 @@ document.getElementById("form").addEventListener("submit", (event) => {
 })
 
 function pintarDatos(user) {
-    let datos = JSON.parse(localStorage.getItem("usuarios"))
-    let newDatos = datos.filter(usuario => usuario.id == user.id)[0]
+    // let datos = JSON.parse(localStorage.getItem("usuarios"))
+    // let newDatos = datos.filter(usuario => usuario.id == user.id)[0]
 
     let divElement = document.createElement("div")
     divElement.setAttribute("id", `id_${user.id}`)
     document.getElementById("datos").appendChild(divElement)
 
-    for (const clave in newDatos) {
+    for (const clave in user) {
         if (clave != "id") {
             let pElement = document.createElement("p")
-            let contenido = document.createTextNode(newDatos[clave])
+            let contenido = document.createTextNode(user[clave])
             pElement.appendChild(contenido)
             divElement.appendChild(pElement)
         }
@@ -92,5 +98,18 @@ function crearUsuario(dataUser){
                 console.error("Error adding document: ", error);
         });
   }
+
+  function readAll(){
+
+    db
+    .collection("users")
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            console.log(`${doc.id} => ${doc.data().keyNombre}`)
+            pintarDatos(doc.data());
+        });
+    });
+}
   
 
