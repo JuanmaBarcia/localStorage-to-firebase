@@ -28,10 +28,12 @@ document.getElementById("form").addEventListener("submit", (event) => {
         keyComentario: comentario
     }
 
+
     //arrUsrs.push(obj)
     //localStorage.setItem(`usuarios`, JSON.stringify(arrUsrs))
     contador++
     crearUsuario(obj)
+
 
     pintarDatos(obj)
     borrarUsr(obj.id)
@@ -78,6 +80,7 @@ document.getElementById("erase").addEventListener("click", () => {
     document.getElementById("datos").innerHTML = ""
 })
 
+
 ////FireBase
 
 function crearUsuario(dataUser){
@@ -90,3 +93,4 @@ function crearUsuario(dataUser){
         });
   }
   
+
