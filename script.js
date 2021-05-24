@@ -28,9 +28,11 @@ document.getElementById("form").addEventListener("submit", (event) => {
         keyComentario: comentario
     }
 
-    arrUsrs.push(obj)
-    localStorage.setItem(`usuarios`, JSON.stringify(arrUsrs))
+    // arrUsrs.push(obj)
+    // localStorage.setItem(`usuarios`, JSON.stringify(arrUsrs))
     contador++
+    
+    crearUsuario(obj);
 
     pintarDatos(obj)
     borrarUsr(obj.id)
@@ -76,3 +78,16 @@ document.getElementById("erase").addEventListener("click", () => {
     contador = 0
     document.getElementById("datos").innerHTML = ""
 })
+
+
+// FIREBASE
+
+function crearUsuario(dataUser){
+    db.collection("users").add(dataUser)
+    .then((docRef) => {
+        console.log("Document written with ID: ", docRef.id);
+    })
+    .catch((error) => {
+        console.error("Error adding document: ", error);
+    });
+}
